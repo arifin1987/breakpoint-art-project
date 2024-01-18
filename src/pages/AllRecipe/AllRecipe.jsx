@@ -42,7 +42,7 @@ const AllRecipe = () => {
           console.log(data);
           if (data.modifiedCount > 0) {
             alert("updated successfuly");
-            const remaining = recipes.filter((recipe) => recipe._id === id);
+            const remaining = recipes.filter((recipe) => recipe._id !== id);
             const updated = recipes.find((recipe) => recipe._id === id);
             updated.status = "confirm";
             const newRecipes = [updated, ...remaining];
