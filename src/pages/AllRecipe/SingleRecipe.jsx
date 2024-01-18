@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const SingleRecipe = ({ recipe }) => {
+const SingleRecipe = ({ recipe, handleDelete, handleConfirm }) => {
   // eslint-disable-next-line react/prop-types
   const { _id, image, title, ingredients, instructions } = recipe;
+
   return (
     <tr>
       <th></th>
@@ -26,9 +27,14 @@ const SingleRecipe = ({ recipe }) => {
         </Link>
       </th>
       <th>
-        <Link to={`/recipe/${_id}`}>
-          <button className="btn btn-primary">Delete</button>
-        </Link>
+        <button onClick={() => handleDelete(_id)} className="btn btn-primary">
+          Delete
+        </button>
+      </th>
+      <th>
+        <button onClick={() => handleConfirm(_id)} className="btn btn-primary">
+          Confirm
+        </button>
       </th>
     </tr>
   );

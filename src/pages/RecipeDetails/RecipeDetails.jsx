@@ -5,7 +5,7 @@ const RecipeDetails = () => {
   return (
     <div>
       <img src={details.image} alt="" />
-      <h1>Name: {details.title}</h1>
+      <h1 className="text-2xl">Name: {details.title}</h1>
       <p>Ingredients:{details.ingredients}</p>
       <p>Instructions:{details.instructions}</p>
     </div>

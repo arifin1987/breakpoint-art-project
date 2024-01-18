@@ -9,6 +9,39 @@ const AllRecipe = () => {
       .then((res) => res.json())
       .then((data) => setRecipe(data));
   }, []);
+
+  const handleDelete = (id) => {
+    const proceed = confirm("Are you sure you want to delete?");
+    if (proceed) {
+      fetch(`http://localhost:5000/recipe/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            alert("deleted successful");
+            const remaining = recipes.filter((recipe) => recipe._id !== id);
+            setRecipe(remaining);
+          }
+        });
+    }
+  };
+
+  const handleConfirm = (id) => {
+    fetch(`http://localhost:5000/recipe/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "confirm" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+        }
+      });
+  };
   return (
     <div>
       <div className="overflow-x-auto w-full">
@@ -25,7 +58,12 @@ const AllRecipe = () => {
           </thead>
           <tbody>
             {recipes.map((recipe) => (
-              <SingleRecipe key={recipe.id} recipe={recipe}></SingleRecipe>
+              <SingleRecipe
+                key={recipe.id}
+                recipe={recipe}
+                handleDelete={handleDelete}
+                handleConfirm={handleConfirm}
+              ></SingleRecipe>
             ))}
           </tbody>
         </table>
