@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 const SingleRecipe = ({ recipe, handleDelete, handleConfirm }) => {
   // eslint-disable-next-line react/prop-types
-  const { _id, image, title, ingredients, instructions } = recipe;
+  const { _id, image, title, ingredients, instructions, status } = recipe;
 
   return (
     <tr>
@@ -32,9 +32,16 @@ const SingleRecipe = ({ recipe, handleDelete, handleConfirm }) => {
         </button>
       </th>
       <th>
-        <button onClick={() => handleConfirm(_id)} className="btn btn-primary">
-          Confirm
-        </button>
+        {status === "confirm" ? (
+          <span className="font-bold text-primary">Confirmed</span>
+        ) : (
+          <button
+            onClick={() => handleConfirm(_id)}
+            className="btn btn-primary"
+          >
+            Please Confirm
+          </button>
+        )}
       </th>
     </tr>
   );

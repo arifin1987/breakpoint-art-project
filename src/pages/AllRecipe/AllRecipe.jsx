@@ -19,7 +19,7 @@ const AllRecipe = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            alert("deleted successful");
+            alert("deleted successfuly");
             const remaining = recipes.filter((recipe) => recipe._id !== id);
             setRecipe(remaining);
           }
@@ -28,19 +28,28 @@ const AllRecipe = () => {
   };
 
   const handleConfirm = (id) => {
-    fetch(`http://localhost:5000/recipe/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ status: "confirm" }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-        }
-      });
+    const proceed = confirm("Are you sure you want to confirm?");
+    if (proceed) {
+      fetch(`http://localhost:5000/recipe/${id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ status: "confirm" }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.modifiedCount > 0) {
+            alert("updated successfuly");
+            const remaining = recipes.filter((recipe) => recipe._id === id);
+            const updated = recipes.find((recipe) => recipe._id === id);
+            updated.status = "confirm";
+            const newRecipes = [updated, ...remaining];
+            setRecipe(newRecipes);
+          }
+        });
+    }
   };
   return (
     <div>
