@@ -26,7 +26,9 @@ const router = createBrowserRouter([
         path: "/recipe/:id",
         element: <RecipeDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/recipe/${params.id}`),
+          fetch(
+            `https://breakpoint-art-project-server-nlesavpdx-arifin1987.vercel.app/recipe/${params.id}`
+          ),
       },
     ],
   },

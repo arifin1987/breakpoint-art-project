@@ -4,7 +4,9 @@ const useCart = () => {
   const { refetch, data: cart = [] } = useQuery({
     queryKey: ["carts"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/recipe");
+      const res = await fetch(
+        "https://breakpoint-art-project-server-nlesavpdx-arifin1987.vercel.app/recipe"
+      );
       return res.json();
     },
   });
