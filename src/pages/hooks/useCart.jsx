@@ -5,7 +5,7 @@ const useCart = () => {
     queryKey: ["carts"],
     queryFn: async () => {
       const res = await fetch(
-        "https://breakpoint-art-project-server-nlesavpdx-arifin1987.vercel.app/recipe"
+        "https://breakpoint-art-project-server.vercel.app"
       );
       return res.json();
     },

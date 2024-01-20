@@ -5,9 +5,7 @@ import SingleRecipe from "./SingleRecipe";
 const AllRecipe = () => {
   const [recipes, setRecipe] = useState([]);
   useEffect(() => {
-    fetch(
-      "https://breakpoint-art-project-server-nlesavpdx-arifin1987.vercel.app/recipe"
-    )
+    fetch("https://breakpoint-art-project-server.vercel.app")
       .then((res) => res.json())
       .then((data) => setRecipe(data));
   }, []);
@@ -15,12 +13,9 @@ const AllRecipe = () => {
   const handleDelete = (id) => {
     const proceed = confirm("Are you sure you want to delete?");
     if (proceed) {
-      fetch(
-        `https://breakpoint-art-project-server-nlesavpdx-arifin1987.vercel.app/recipe/${id}`,
-        {
-          method: "DELETE",
-        }
-      )
+      fetch(`https://breakpoint-art-project-server.vercel.app/${id}`, {
+        method: "DELETE",
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
@@ -35,16 +30,13 @@ const AllRecipe = () => {
   const handleConfirm = (id) => {
     const proceed = confirm("Are you sure you want to confirm?");
     if (proceed) {
-      fetch(
-        `https://breakpoint-art-project-server-nlesavpdx-arifin1987.vercel.app/recipe/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ status: "confirm" }),
-        }
-      )
+      fetch(`https://breakpoint-art-project-server.vercel.app/${id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ status: "confirm" }),
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

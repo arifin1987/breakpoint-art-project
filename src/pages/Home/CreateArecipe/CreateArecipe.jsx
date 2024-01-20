@@ -10,16 +10,13 @@ const CreateArecipe = () => {
     const image = form.image.value;
 
     const savedIngredients = { title, ingredients, instructions, image };
-    fetch(
-      "https://breakpoint-art-project-server-nlesavpdx-arifin1987.vercel.app/recipe",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(savedIngredients),
-      }
-    )
+    fetch("https://breakpoint-art-project-server.vercel.app", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(savedIngredients),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
