@@ -5,7 +5,7 @@ import SingleRecipe from "./SingleRecipe";
 const AllRecipe = () => {
   const [recipes, setRecipe] = useState([]);
   useEffect(() => {
-    fetch("https://breakpoint-art-project-server.vercel.app")
+    fetch("http://localhost:5000/recipe")
       .then((res) => res.json())
       .then((data) => setRecipe(data));
   }, []);
@@ -13,7 +13,7 @@ const AllRecipe = () => {
   const handleDelete = (id) => {
     const proceed = confirm("Are you sure you want to delete?");
     if (proceed) {
-      fetch(`https://breakpoint-art-project-server.vercel.app/${id}`, {
+      fetch(`http://localhost:5000/recipe/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -30,7 +30,7 @@ const AllRecipe = () => {
   const handleConfirm = (id) => {
     const proceed = confirm("Are you sure you want to confirm?");
     if (proceed) {
-      fetch(`https://breakpoint-art-project-server.vercel.app/${id}`, {
+      fetch(`http://localhost:5000/recipe/${id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
